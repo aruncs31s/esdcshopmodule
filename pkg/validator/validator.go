@@ -2,6 +2,7 @@ package validator
 
 import (
 	"regexp"
+	"strconv"
 	"strings"
 )
 
@@ -28,7 +29,7 @@ func (v *Validator) Required(value, field string) *Validator {
 // MinLength validates that a string has a minimum length.
 func (v *Validator) MinLength(value, field string, min int) *Validator {
 	if len(value) < min {
-		v.addError(field + " must be at least " + string(rune(min+'0')) + " characters")
+		v.addError(field + " must be at least " + strconv.Itoa(min) + " characters")
 	}
 	return v
 }
@@ -36,7 +37,7 @@ func (v *Validator) MinLength(value, field string, min int) *Validator {
 // MaxLength validates that a string has a maximum length.
 func (v *Validator) MaxLength(value, field string, max int) *Validator {
 	if len(value) > max {
-		v.addError(field + " must be at most " + string(rune(max+'0')) + " characters")
+		v.addError(field + " must be at most " + strconv.Itoa(max) + " characters")
 	}
 	return v
 }
@@ -56,7 +57,7 @@ func (v *Validator) Email(value, field string) *Validator {
 // Min validates that an integer is at least a minimum value.
 func (v *Validator) Min(value int, field string, min int) *Validator {
 	if value < min {
-		v.addError(field + " must be at least " + string(rune(min+'0')))
+		v.addError(field + " must be at least " + strconv.Itoa(min))
 	}
 	return v
 }
@@ -64,7 +65,7 @@ func (v *Validator) Min(value int, field string, min int) *Validator {
 // Max validates that an integer is at most a maximum value.
 func (v *Validator) Max(value int, field string, max int) *Validator {
 	if value > max {
-		v.addError(field + " must be at most " + string(rune(max+'0')))
+		v.addError(field + " must be at most " + strconv.Itoa(max))
 	}
 	return v
 }
